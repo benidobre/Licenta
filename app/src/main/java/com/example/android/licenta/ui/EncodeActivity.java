@@ -50,7 +50,7 @@ public class EncodeActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         qrImageView = findViewById(R.id.qr_image_view);
-        qrImageView.setImageBitmap(BusinessLogic.getQR());
+        qrImageView.setImageBitmap(BusinessLogic.getQR(str));
     }
 
     @Override

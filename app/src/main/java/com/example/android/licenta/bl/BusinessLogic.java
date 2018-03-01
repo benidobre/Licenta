@@ -39,11 +39,12 @@ public class BusinessLogic {
         }
     }
 
-    public static Bitmap getQR(){
+    public static Bitmap getQR(String str){
         String text = "Hello, world!";          // User-supplied Unicode text
 		QrCode.Ecc errCorLvl = QrCode.Ecc.LOW;  // Error correction level
 
-		QrCode qr = QrCode.encodeText(text, errCorLvl);  // Make the QR Code symbol
+		QrCode qr = QrCode.encodeText(str, errCorLvl);  // Make the QR Code symbol
+//        QrCode qr = QrCode.encodeBinary(bytes, errCorLvl);
         return qr.toBitmap(100,4);
     }
 
