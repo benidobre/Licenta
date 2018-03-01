@@ -19,6 +19,7 @@ import com.example.android.licenta.bl.BusinessLogic;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 
+
 public class EncodeActivity extends AppCompatActivity {
     private ImageView qrImageView;
     String text = "/storage/emulated/0/Download/images.jpg";
@@ -49,7 +50,7 @@ public class EncodeActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         qrImageView = findViewById(R.id.qr_image_view);
-        qrImageView.setImageBitmap(BusinessLogic.getQrCode(str, metrics.widthPixels));
+        qrImageView.setImageBitmap(BusinessLogic.getQR());
     }
 
     @Override

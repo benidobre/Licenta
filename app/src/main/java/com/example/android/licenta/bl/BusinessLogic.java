@@ -3,6 +3,7 @@ package com.example.android.licenta.bl;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import com.example.android.licenta.io.nayuki.qrcodegen.QrCode;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -36,6 +37,14 @@ public class BusinessLogic {
             e.printStackTrace();
             return Bitmap.createBitmap(size, size, Bitmap.Config.ALPHA_8);
         }
+    }
+
+    public static Bitmap getQR(){
+        String text = "Hello, world!";          // User-supplied Unicode text
+		QrCode.Ecc errCorLvl = QrCode.Ecc.LOW;  // Error correction level
+
+		QrCode qr = QrCode.encodeText(text, errCorLvl);  // Make the QR Code symbol
+        return qr.toBitmap(100,4);
     }
 
     public static byte[] readFile(File file) {
