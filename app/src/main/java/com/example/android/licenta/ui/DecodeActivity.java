@@ -12,9 +12,12 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Build;
+import android.os.Environment;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,6 +43,8 @@ import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
@@ -90,6 +95,22 @@ public class DecodeActivity extends AppCompatActivity implements BarcodeGraphicT
         Snackbar.make(mGraphicOverlay, "Tap to capture. Pinch/Stretch to zoom",
                 Snackbar.LENGTH_LONG)
                 .show();
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    123);
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.VIBRATE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.VIBRATE},
+                    546);
+        }
+
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "bb.txt");
     }
 
     @Override
@@ -430,17 +451,40 @@ public class DecodeActivity extends AppCompatActivity implements BarcodeGraphicT
         }
     }
 
+    private File photo ;
+    private FileOutputStream fos;
+    Vibrator v;
     @Override
     public void onBarcodeDetected(Barcode barcode) {
+        v.vibrate(500);
         //do something with barcode data returned
-        int i = 0;
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
         byte[] rez;
         try {
             rez = barcode.rawValue.getBytes("ISO-8859-1");
-            System.out.println(bytesToHex(rez));
-            Log.i("JE suis MALADE",bytesToHex(rez));
+
+            if(fos == null) {
+                if (photo.exists()) {
+                    photo.delete();
+                }
+                fos = new FileOutputStream(photo.getPath(), true);
+            }
+
+            if(barcode.rawValue.equalsIgnoreCase("end")) {
+                fos.close();
+                return;
+            }
+
+            fos.write(rez);
+
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
+        }
+        catch (java.io.IOException e) {
+            Log.e("PictureDemo", "Exception in photoCallback", e);
         }
         Log.i(TAG, "onBarcodeDetected: merge");
     }
