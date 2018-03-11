@@ -18,12 +18,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.android.licenta.R;
 import com.example.android.licenta.bl.BusinessLogic;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 
 public class EncodeActivity extends AppCompatActivity {
@@ -39,7 +41,7 @@ public class EncodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 //        File imgFile = new  File("/sdcard/Images/test_image.jpg");
-        File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "bb.txt");
+        File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "bb.png");
 
         byte[] rez = {0x1B, 0x2A, 0x7F, -0x80};
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -53,17 +55,20 @@ public class EncodeActivity extends AppCompatActivity {
             rez = BusinessLogic.fullyReadFileToBytes(imgFile);
         }
 
-        str = "BENI";
-        try {
-            str = new String(rez,"ISO-8859-1");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        str = "BENIAMIN";
+//        try {
+            str = new String(rez, StandardCharsets.ISO_8859_1);
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         qrImageView = findViewById(R.id.qr_image_view);
+//        qrImageView.setImageBitmap(BusinessLogic.getBytesQR(rez));
+        if(str.length() >6)
+            Toast.makeText(this, BusinessLogic.bytesToHex(str.substring(0,5).getBytes(StandardCharsets.ISO_8859_1)), Toast.LENGTH_LONG).show();
         if(100*frame +100 > str.length()) {
             qrImageView.setImageBitmap(BusinessLogic.getQR(str.substring(100 * frame)));
         } else {
@@ -99,7 +104,7 @@ public class EncodeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.decode_qr:
-                Intent intent = new Intent(this, DecodeActivity.class);
+                Intent intent = new Intent(this, SecondDecodeActivity.class);
                 startActivity(intent);
                 finish();
                 return true;

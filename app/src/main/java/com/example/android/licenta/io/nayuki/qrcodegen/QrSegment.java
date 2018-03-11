@@ -125,7 +125,7 @@ public final class QrSegment {
 		else if (ALPHANUMERIC_REGEX.matcher(text).matches())
 			result.add(makeAlphanumeric(text));
 		else
-			result.add(makeBytes(text.getBytes(StandardCharsets.UTF_8)));
+			result.add(makeBytes(text.getBytes(StandardCharsets.ISO_8859_1)));
 		return result;
 	}
 	

@@ -26,6 +26,8 @@
         </activity>
         <activity android:name=".ui.DecodeActivity">
         </activity>
+        <activity android:name=".ui.SecondDecodeActivity">
+        </activity>
     </application>
 
 </manifest>
