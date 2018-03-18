@@ -30,4 +30,5 @@ dependencies {
     compile 'com.google.android.gms:play-services-vision:9.4.0+'
     compile 'com.android.support:design:24.2.0'
     compile 'me.dm7.barcodescanner:zxing:1.9'
+    compile 'me.dm7.barcodescanner:zbar:1.9.8'
 }

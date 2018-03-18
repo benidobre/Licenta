@@ -55,41 +55,17 @@ public class EncodeActivity extends AppCompatActivity {
             rez = BusinessLogic.fullyReadFileToBytes(imgFile);
         }
 
-        str = "BENIAMIN";
-//        try {
-            str = new String(rez, StandardCharsets.ISO_8859_1);
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
-
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         qrImageView = findViewById(R.id.qr_image_view);
-//        qrImageView.setImageBitmap(BusinessLogic.getBytesQR(rez));
-        if(str.length() >6)
-            Toast.makeText(this, BusinessLogic.bytesToHex(str.substring(0,5).getBytes(StandardCharsets.ISO_8859_1)), Toast.LENGTH_LONG).show();
-        if(100*frame +100 > str.length()) {
-            qrImageView.setImageBitmap(BusinessLogic.getQR(str.substring(100 * frame)));
-        } else {
-            qrImageView.setImageBitmap(BusinessLogic.getQR(str.substring(100 * frame, 100 * frame + 100)));
-        }
+        qrImageView.setImageBitmap(BusinessLogic.getBytesQR(rez));
 
         button = findViewById(R.id.button_next_qr);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                frame++;
 
-                if(100*frame > str.length()) {
-                    qrImageView.setImageBitmap(BusinessLogic.getQR("end"));
-                    return;
-                }
-                if(100*frame +100 > str.length()) {
-                    qrImageView.setImageBitmap(BusinessLogic.getQR(str.substring(100 * frame)));
-                } else {
-                    qrImageView.setImageBitmap(BusinessLogic.getQR(str.substring(100 * frame, 100 * frame + 100)));
-                }
             }
         });
     }

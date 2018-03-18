@@ -25,10 +25,12 @@ import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
+import me.dm7.barcodescanner.zbar.ZBarScannerView;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class SecondDecodeActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler{
+public class SecondDecodeActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler{
     private ZXingScannerView zXingScannerView;
+    private ZBarScannerView mScannerView;
 
     private File photo ;
     private FileOutputStream fos;
@@ -58,28 +60,37 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZXingScan
         }
 
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "gg.png");
+        photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "pp.png");
+        mScannerView = new ZBarScannerView(this);    // Programmatically initialize the scanner view
+        setContentView(mScannerView);                // Set the scanner view as the content view
 
     }
 
-    public void scan(View view){
-        zXingScannerView =new ZXingScannerView(getApplicationContext());
-        setContentView(zXingScannerView);
-        zXingScannerView.setResultHandler(this);
-        zXingScannerView.startCamera();
-
-    }
+//    public void scan(View view){
+//        zXingScannerView =new ZXingScannerView(getApplicationContext());
+//        setContentView(zXingScannerView);
+//        zXingScannerView.setResultHandler(this);
+//        zXingScannerView.startCamera();
+//
+//    }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if(zXingScannerView != null) {
-            zXingScannerView.stopCamera();
+        if(mScannerView != null) {
+            mScannerView.stopCamera();
         }
     }
 
     @Override
-    public void handleResult(Result result) {
+    public void onResume() {
+        super.onResume();
+        mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
+        mScannerView.startCamera();          // Start camera on resume
+    }
+
+    @Override
+    public void handleResult(me.dm7.barcodescanner.zbar.Result result) {
         v.vibrate(500);
 //        do something with barcode data returned
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -87,8 +98,8 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZXingScan
             return;
         }
         try {
-            Toast.makeText(this, BusinessLogic.bytesToHex(result.getText().substring(0,5).getBytes(StandardCharsets.ISO_8859_1)), Toast.LENGTH_LONG).show();
-            byte[] rez = result.getText().getBytes(StandardCharsets.ISO_8859_1);
+            Toast.makeText(this, BusinessLogic.bytesToHex(result.getContents().substring(0,5).getBytes(StandardCharsets.ISO_8859_1)), Toast.LENGTH_LONG).show();
+            byte[] rez = result.getContents().getBytes(StandardCharsets.ISO_8859_1);
 
             if(fos == null) {
                 if (photo.exists()) {
@@ -96,14 +107,11 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZXingScan
                 }
                 fos = new FileOutputStream(photo.getPath(), true);
             }
-
-            if(result.getText().equalsIgnoreCase("end")) {
-                fos.close();
-                fos = null;
-                return;
-            }
-
             fos.write(rez);
+            fos.close();
+            fos = null;
+            finish();
+            return;
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -111,7 +119,7 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZXingScan
         catch (java.io.IOException e) {
             Log.e("PictureDemo", "Exception in photoCallback", e);
         } finally {
-            zXingScannerView.resumeCameraPreview(this);
+            mScannerView.resumeCameraPreview(this);
         }
 
     }
@@ -135,6 +143,4 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZXingScan
         }
 
     }
-
-
 }
