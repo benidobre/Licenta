@@ -52,7 +52,16 @@ public class BusinessLogic {
         QrCode.Ecc errCorLvl = QrCode.Ecc.LOW;  // Error correction level
 
         QrCode qr = QrCode.encodeBinary(bytes, errCorLvl);
-        return qr.toBitmap(100,4);
+        return qr.toBitmap(10,4);
+    }
+
+    public static byte[] subArray(byte[] bytes, int start, int end) {
+        byte[] subArray = new byte[end-start];
+        int n = bytes.length;
+        for (int i = start ; i < end && i < n; ++i) {
+            subArray[i-start] = bytes[i];
+        }
+        return subArray;
     }
 
     public static byte[] readFile(File file) {

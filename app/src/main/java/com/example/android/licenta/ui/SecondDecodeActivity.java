@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -60,7 +61,7 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
         }
 
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "pp.png");
+        photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "cc.jpg");
         mScannerView = new ZBarScannerView(this);    // Programmatically initialize the scanner view
         setContentView(mScannerView);                // Set the scanner view as the content view
 
@@ -89,6 +90,7 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
         mScannerView.startCamera();          // Start camera on resume
     }
 
+    byte[] last = new byte[10];
     @Override
     public void handleResult(me.dm7.barcodescanner.zbar.Result result) {
         v.vibrate(500);
@@ -98,8 +100,19 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
             return;
         }
         try {
-            Toast.makeText(this, BusinessLogic.bytesToHex(result.getContents().substring(0,5).getBytes(StandardCharsets.ISO_8859_1)), Toast.LENGTH_LONG).show();
+            if(result.getContents().equalsIgnoreCase("end")) {
+                fos.close();
+                fos = null;
+                finish();
+                return;
+            }
+
             byte[] rez = result.getContents().getBytes(StandardCharsets.ISO_8859_1);
+
+            if(Arrays.equals(BusinessLogic.subArray(rez,0,10),last)) {
+                return;
+            }
+            last = BusinessLogic.subArray(rez,0,10);
 
             if(fos == null) {
                 if (photo.exists()) {
@@ -108,10 +121,7 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
                 fos = new FileOutputStream(photo.getPath(), true);
             }
             fos.write(rez);
-            fos.close();
-            fos = null;
-            finish();
-            return;
+
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

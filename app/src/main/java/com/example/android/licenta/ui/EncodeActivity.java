@@ -33,7 +33,10 @@ public class EncodeActivity extends AppCompatActivity {
     private Button button;
     String text = "/storage/emulated/0/Download/images.jpg";
     String str;
-    int frame = 0;
+    int current = 0;
+    final int step = 500;
+    byte[] rez;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +44,8 @@ public class EncodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 //        File imgFile = new  File("/sdcard/Images/test_image.jpg");
-        File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "bb.png");
+        File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fb.jpg");
 
-        byte[] rez = {0x1B, 0x2A, 0x7F, -0x80};
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
@@ -58,13 +60,23 @@ public class EncodeActivity extends AppCompatActivity {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
+
         qrImageView = findViewById(R.id.qr_image_view);
-        qrImageView.setImageBitmap(BusinessLogic.getBytesQR(rez));
+
+        qrImageView.setImageBitmap(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez,current*step,current*step + step)));
+
 
         button = findViewById(R.id.button_next_qr);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                current++;
+                if(current > rez.length/step) {
+                    qrImageView.setImageBitmap(BusinessLogic.getQR("end"));
+                    button.setVisibility(View.GONE);
+                } else {
+                    qrImageView.setImageBitmap(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez, current * step, current * step + step)));
+                }
 
             }
         });
