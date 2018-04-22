@@ -1,11 +1,14 @@
 package com.example.android.licenta.ui;
 
 import android.Manifest;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -34,8 +37,9 @@ public class EncodeActivity extends AppCompatActivity {
     String text = "/storage/emulated/0/Download/images.jpg";
     String str;
     int current = 0;
-    final int step = 500;
-    byte[] rez;
+    public static final int step = 512;
+    public static byte[] rez;
+    LiveDataQrViewModel liveDataQrViewModel;
 
 
     @Override
@@ -44,7 +48,6 @@ public class EncodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 //        File imgFile = new  File("/sdcard/Images/test_image.jpg");
-        File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fb.jpg");
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -54,7 +57,7 @@ public class EncodeActivity extends AppCompatActivity {
         }
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 == PackageManager.PERMISSION_GRANTED) {
-            rez = BusinessLogic.fullyReadFileToBytes(imgFile);
+
         }
 
         DisplayMetrics metrics = new DisplayMetrics();
@@ -63,23 +66,39 @@ public class EncodeActivity extends AppCompatActivity {
 
         qrImageView = findViewById(R.id.qr_image_view);
 
-        qrImageView.setImageBitmap(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez,current*step,current*step + step)));
+//        qrImageView.setImageBitmap(BusinessLogic.getQR("focus"));
 
 
         button = findViewById(R.id.button_next_qr);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                current++;
-                if(current > rez.length/step) {
-                    qrImageView.setImageBitmap(BusinessLogic.getQR("end"));
-                    button.setVisibility(View.GONE);
-                } else {
-                    qrImageView.setImageBitmap(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez, current * step, current * step + step)));
-                }
+                liveDataQrViewModel = ViewModelProviders.of(EncodeActivity.this).get(LiveDataQrViewModel.class);
+                liveDataQrViewModel.getQrCode().observe(EncodeActivity.this, new Observer<Bitmap>() {
+                    @Override
+                    public void onChanged(@Nullable Bitmap bitmap) {
+                        qrImageView.setImageBitmap(bitmap);
+                    }
+                });
+                view.setVisibility(View.INVISIBLE);
+//                current++;
+//                if(current > rez.length/step) {
+//                    qrImageView.setImageBitmap(BusinessLogic.getQR("end"));
+//                    button.setVisibility(View.GONE);
+//                } else {
+//                    qrImageView.setImageBitmap(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez, current * step, current * step + step)));
+//                }
 
             }
         });
+//        liveDataQrViewModel = ViewModelProviders.of(this).get(LiveDataQrViewModel.class);
+//        liveDataQrViewModel.getQrCode().observe(this, new Observer<Bitmap>() {
+//            @Override
+//            public void onChanged(@Nullable Bitmap bitmap) {
+//                qrImageView.setImageBitmap(bitmap);
+//            }
+//        });
+
     }
 
     @Override

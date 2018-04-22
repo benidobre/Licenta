@@ -31,4 +31,9 @@ dependencies {
     compile 'com.android.support:design:24.2.0'
     compile 'me.dm7.barcodescanner:zxing:1.9'
     compile 'me.dm7.barcodescanner:zbar:1.9.8'
+
+    compile 'android.arch.lifecycle:extensions:' + rootProject.archLifecycleVersion
+    compile 'android.arch.persistence.room:runtime:' + rootProject.archRoomVersion
+    annotationProcessor 'android.arch.lifecycle:compiler:' + rootProject.archLifecycleVersion
+    annotationProcessor 'android.arch.persistence.room:compiler:' + rootProject.archRoomVersion
 }

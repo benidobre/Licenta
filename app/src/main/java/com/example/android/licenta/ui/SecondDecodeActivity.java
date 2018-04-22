@@ -61,7 +61,7 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
         }
 
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "cc.jpg");
+        photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "bb.jpg");
         mScannerView = new ZBarScannerView(this);    // Programmatically initialize the scanner view
         setContentView(mScannerView);                // Set the scanner view as the content view
 
@@ -93,7 +93,6 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
     byte[] last = new byte[10];
     @Override
     public void handleResult(me.dm7.barcodescanner.zbar.Result result) {
-        v.vibrate(500);
 //        do something with barcode data returned
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -104,6 +103,10 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
                 fos.close();
                 fos = null;
                 finish();
+                return;
+            }
+
+            if(result.getContents().equalsIgnoreCase("focus")) {
                 return;
             }
 
