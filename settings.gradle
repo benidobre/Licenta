@@ -1,1 +1,1 @@
-include ':app', ':zxing-sample', ':zbar-sample', ':core', ':zbar', ':zxing'
+include ':app', ':core', ':zbar'

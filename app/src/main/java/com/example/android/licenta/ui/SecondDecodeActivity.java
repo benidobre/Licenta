@@ -27,10 +27,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
-import me.dm7.barcodescanner.zxing.ZXingScannerView;
+//import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class SecondDecodeActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler{
-    private ZXingScannerView zXingScannerView;
+//    private ZXingScannerView zXingScannerView;
     private ZBarScannerView mScannerView;
 
     private File photo ;

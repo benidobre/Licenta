@@ -10,7 +10,7 @@ ext {
 
 dependencies {
     //compile project(":core")
-    compile libraries.barcodescanner_core
+    compile project(path: ':core')
     compile fileTree(dir: 'libs', include: '*.jar')
 }
 

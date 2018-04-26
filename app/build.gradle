@@ -35,5 +35,4 @@ dependencies {
     annotationProcessor 'android.arch.lifecycle:compiler:' + rootProject.archLifecycleVersion
     annotationProcessor 'android.arch.persistence.room:compiler:' + rootProject.archRoomVersion
     compile project(path: ':zbar')
-    compile project(path: ':zxing')
 }
