@@ -1,0 +1,39 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml:3:1-5:12
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml:3:1-5:12
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml:3:1-5:12
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml:3:1-5:12
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml:3:1-5:12
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml:3:1-5:12
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml:3:1-5:12
+	package
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml:3:70-106
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml:3:1-5:12
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml:3:1-5:12
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml:3:11-69
+application
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml:4:5-32
+uses-sdk
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zbar/src/main/AndroidManifest.xml

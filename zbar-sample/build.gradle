@@ -1,0 +1,32 @@
+apply plugin: 'com.android.application'
+
+dependencies {
+    //compile project(":zbar")
+    compile libraries.barcodescanner_zbar
+    compile libraries.support_v4
+    compile libraries.appcompat_v7
+    compile libraries.design_support
+}
+
+android {
+    defaultConfig {
+        applicationId "${project.group}.zbar.sample"
+    }
+}
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}

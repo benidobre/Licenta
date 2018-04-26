@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/bdobre/Documents/workspace/barcodescanner/zbar-sample/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/Users/bdobre/.android/build-cache/164f1a2a2f1074dd87d351440e3f4ee692d28c6c/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "/Users/bdobre/Documents/workspace/barcodescanner/zbar-sample/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/Users/bdobre/.android/build-cache/164f1a2a2f1074dd87d351440e3f4ee692d28c6c/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    }
+]

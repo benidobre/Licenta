@@ -1,0 +1,231 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:3:1-59:12
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:3:1-59:12
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:3:1-59:12
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:3:1-59:12
+MERGED from [me.dm7.barcodescanner:zxing:1.9.8] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/zxing-1.9.8.aar/7bc08a24e4f92612e7386283f8429ae3/AndroidManifest.xml:2:1-13:12
+MERGED from [com.android.support:design:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/4240b2926180b3e4625f85b0e8856c69/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/1293d82258b1faa9ac46ae30f0d8bc54/AndroidManifest.xml:17:1-31:12
+MERGED from [me.dm7.barcodescanner:core:1.9.8] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/core-1.9.8.aar/edaca67ccae91ea779c1bf3e5ea481fd/AndroidManifest.xml:2:1-13:12
+MERGED from [com.android.support:transition:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/584460535e51b32eb7857648c702273b/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/c04a1236fc5d3732268f65ee76aeb7a9/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/a6c89dd5c59d197c237b28cf049df81a/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/ce277b65d55d8f36d0c4b9e3abdf90bb/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/75e850ec91d9639959c42696eabc6362/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/3ffa4bf10b025db36b4f77aa96a4b1fd/AndroidManifest.xml:17:1-26:12
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/335373484d6a482081c6c116ed8077a5/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/9108f88b79dd66c364de3798475e70a9/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/3758cfc56dd09d74422988ab431b9635/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-compat:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/f45898e26d3062735833e1a70e37ce1a/AndroidManifest.xml:17:1-31:12
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:3:1-59:12
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:3:1-59:12
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:3:1-59:12
+	package
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:3:70-114
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:3:1-59:12
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:3:1-59:12
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:3:11-69
+uses-permission#android.permission.CAMERA
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:4:3-63
+	android:name
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:4:20-60
+application
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:6:3-58:19
+MERGED from [me.dm7.barcodescanner:zxing:1.9.8] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/zxing-1.9.8.aar/7bc08a24e4f92612e7386283f8429ae3/AndroidManifest.xml:11:5-20
+MERGED from [me.dm7.barcodescanner:zxing:1.9.8] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/zxing-1.9.8.aar/7bc08a24e4f92612e7386283f8429ae3/AndroidManifest.xml:11:5-20
+MERGED from [com.android.support:design:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/4240b2926180b3e4625f85b0e8856c69/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:design:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/4240b2926180b3e4625f85b0e8856c69/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/1293d82258b1faa9ac46ae30f0d8bc54/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/1293d82258b1faa9ac46ae30f0d8bc54/AndroidManifest.xml:29:5-20
+MERGED from [me.dm7.barcodescanner:core:1.9.8] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/core-1.9.8.aar/edaca67ccae91ea779c1bf3e5ea481fd/AndroidManifest.xml:11:5-20
+MERGED from [me.dm7.barcodescanner:core:1.9.8] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/core-1.9.8.aar/edaca67ccae91ea779c1bf3e5ea481fd/AndroidManifest.xml:11:5-20
+MERGED from [com.android.support:transition:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/584460535e51b32eb7857648c702273b/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:transition:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/584460535e51b32eb7857648c702273b/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-v4:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/c04a1236fc5d3732268f65ee76aeb7a9/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-v4:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/c04a1236fc5d3732268f65ee76aeb7a9/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/a6c89dd5c59d197c237b28cf049df81a/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/a6c89dd5c59d197c237b28cf049df81a/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/ce277b65d55d8f36d0c4b9e3abdf90bb/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/ce277b65d55d8f36d0c4b9e3abdf90bb/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/75e850ec91d9639959c42696eabc6362/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/75e850ec91d9639959c42696eabc6362/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/335373484d6a482081c6c116ed8077a5/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/335373484d6a482081c6c116ed8077a5/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/9108f88b79dd66c364de3798475e70a9/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/9108f88b79dd66c364de3798475e70a9/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/3758cfc56dd09d74422988ab431b9635/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/3758cfc56dd09d74422988ab431b9635/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-compat:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/f45898e26d3062735833e1a70e37ce1a/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/f45898e26d3062735833e1a70e37ce1a/AndroidManifest.xml:29:5-20
+	android:label
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:7:9-41
+	android:icon
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:8:9-45
+	android:allowBackup
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:6:16-42
+activity#me.dm7.barcodescanner.zxing.sample.MainActivity
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:9:9-16:20
+	android:label
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:11:19-51
+	android:theme
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:10:19-50
+	android:name
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:9:19-47
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:12:13-15:29
+action#android.intent.action.MAIN
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:13:17-69
+	android:name
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:13:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:14:17-77
+	android:name
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:14:27-74
+activity#me.dm7.barcodescanner.zxing.sample.FullScannerActivity
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:18:9-24:20
+	android:label
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:21:19-59
+	android:uiOptions
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:20:19-63
+	android:theme
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:19:19-57
+	android:name
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:18:19-54
+meta-data#android.support.UI_OPTIONS
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:22:13-23:67
+	android:value
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:23:24-64
+	android:name
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:22:24-65
+activity#me.dm7.barcodescanner.zxing.sample.FullScannerFragmentActivity
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:26:9-32:20
+	android:label
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:29:19-68
+	android:uiOptions
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:28:19-63
+	android:theme
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:27:19-57
+	android:name
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:26:19-62
+activity#me.dm7.barcodescanner.zxing.sample.SimpleScannerActivity
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:34:9-37:20
+	android:label
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:36:17-64
+	android:theme
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:35:17-55
+	android:name
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:34:19-56
+activity#me.dm7.barcodescanner.zxing.sample.SimpleScannerFragmentActivity
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:39:9-42:20
+	android:label
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:41:17-73
+	android:theme
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:40:17-55
+	android:name
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:39:19-64
+activity#me.dm7.barcodescanner.zxing.sample.FullScreenScannerFragmentActivity
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:44:9-47:18
+	android:label
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:46:17-78
+	android:theme
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:45:19-57
+	android:name
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:44:19-68
+activity#me.dm7.barcodescanner.zxing.sample.CustomViewFinderScannerActivity
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:49:7-52:18
+	android:label
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:51:17-76
+	android:theme
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:50:17-48
+	android:name
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:49:17-64
+activity#me.dm7.barcodescanner.zxing.sample.ScalingScannerActivity
+ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:54:7-57:18
+	android:label
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:56:17-65
+	android:theme
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:55:17-48
+	android:name
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml:54:17-55
+uses-sdk
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml
+MERGED from [me.dm7.barcodescanner:zxing:1.9.8] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/zxing-1.9.8.aar/7bc08a24e4f92612e7386283f8429ae3/AndroidManifest.xml:7:5-9:41
+MERGED from [me.dm7.barcodescanner:zxing:1.9.8] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/zxing-1.9.8.aar/7bc08a24e4f92612e7386283f8429ae3/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:design:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/4240b2926180b3e4625f85b0e8856c69/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:design:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/4240b2926180b3e4625f85b0e8856c69/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/1293d82258b1faa9ac46ae30f0d8bc54/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/1293d82258b1faa9ac46ae30f0d8bc54/AndroidManifest.xml:21:5-23:78
+MERGED from [me.dm7.barcodescanner:core:1.9.8] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/core-1.9.8.aar/edaca67ccae91ea779c1bf3e5ea481fd/AndroidManifest.xml:7:5-9:41
+MERGED from [me.dm7.barcodescanner:core:1.9.8] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/core-1.9.8.aar/edaca67ccae91ea779c1bf3e5ea481fd/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:transition:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/584460535e51b32eb7857648c702273b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/584460535e51b32eb7857648c702273b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/c04a1236fc5d3732268f65ee76aeb7a9/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/c04a1236fc5d3732268f65ee76aeb7a9/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/a6c89dd5c59d197c237b28cf049df81a/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/a6c89dd5c59d197c237b28cf049df81a/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/ce277b65d55d8f36d0c4b9e3abdf90bb/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/ce277b65d55d8f36d0c4b9e3abdf90bb/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/75e850ec91d9639959c42696eabc6362/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/75e850ec91d9639959c42696eabc6362/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/3ffa4bf10b025db36b4f77aa96a4b1fd/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/3ffa4bf10b025db36b4f77aa96a4b1fd/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/335373484d6a482081c6c116ed8077a5/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/335373484d6a482081c6c116ed8077a5/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/9108f88b79dd66c364de3798475e70a9/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/9108f88b79dd66c364de3798475e70a9/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/3758cfc56dd09d74422988ab431b9635/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/3758cfc56dd09d74422988ab431b9635/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-compat:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/f45898e26d3062735833e1a70e37ce1a/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/f45898e26d3062735833e1a70e37ce1a/AndroidManifest.xml:21:5-23:58
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml
+INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/4240b2926180b3e4625f85b0e8856c69/AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml
+		ADDED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml
+		INJECTED from /Users/bdobre/Documents/workspace/Licenta/zxing-sample/src/main/AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/4240b2926180b3e4625f85b0e8856c69/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/1293d82258b1faa9ac46ae30f0d8bc54/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/1293d82258b1faa9ac46ae30f0d8bc54/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:transition:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/584460535e51b32eb7857648c702273b/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:transition:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/584460535e51b32eb7857648c702273b/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/c04a1236fc5d3732268f65ee76aeb7a9/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-v4:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/c04a1236fc5d3732268f65ee76aeb7a9/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/a6c89dd5c59d197c237b28cf049df81a/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/a6c89dd5c59d197c237b28cf049df81a/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/ce277b65d55d8f36d0c4b9e3abdf90bb/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/ce277b65d55d8f36d0c4b9e3abdf90bb/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/75e850ec91d9639959c42696eabc6362/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/75e850ec91d9639959c42696eabc6362/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/3ffa4bf10b025db36b4f77aa96a4b1fd/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/3ffa4bf10b025db36b4f77aa96a4b1fd/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/335373484d6a482081c6c116ed8077a5/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/335373484d6a482081c6c116ed8077a5/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/9108f88b79dd66c364de3798475e70a9/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/9108f88b79dd66c364de3798475e70a9/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/3758cfc56dd09d74422988ab431b9635/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/3758cfc56dd09d74422988ab431b9635/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-compat:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/f45898e26d3062735833e1a70e37ce1a/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/f45898e26d3062735833e1a70e37ce1a/AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:design:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/4240b2926180b3e4625f85b0e8856c69/AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:design:25.3.1] /Users/bdobre/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/4240b2926180b3e4625f85b0e8856c69/AndroidManifest.xml:26:9-47
