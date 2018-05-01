@@ -4,16 +4,13 @@
               android:id="@+id/activity_main"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="horizontal"
-              android:gravity="center"
-              android:padding="20dp"
+              android:orientation="vertical"
               tools:context=".ui.SecondDecodeActivity">
 
-    <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Scane"
-            android:background="@color/colorPrimary"
-            android:textColor="#fff"
-            android:onClick="scan"/>
+    <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:scaleType="fitStart"
+            android:src="@drawable/ack"
+            android:id="@+id/qr_image_view"/>
 </LinearLayout>

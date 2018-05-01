@@ -4,16 +4,21 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.android.licenta.R;
@@ -22,6 +27,7 @@ import com.google.zxing.Result;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -32,10 +38,25 @@ import me.dm7.barcodescanner.zbar.ZBarScannerView;
 public class SecondDecodeActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler{
 //    private ZXingScannerView zXingScannerView;
     private ZBarScannerView mScannerView;
-
+    private ImageView qrImageView;
     private File photo ;
     private FileOutputStream fos;
     private Vibrator v;
+    AlertDialog dialog;
+    private Handler mHandler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            switch (msg.what) {
+                case 123:
+                    if (dialog != null && dialog.isShowing()) {
+                        dialog.dismiss();
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,8 +83,17 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
 
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "bb.jpg");
-        mScannerView = new ZBarScannerView(this);    // Programmatically initialize the scanner view
+        qrImageView = findViewById(R.id.qr_image_view);
+        mScannerView = new ZBarScannerView(this);           // Programmatically initialize the scanner view
         setContentView(mScannerView);                // Set the scanner view as the content view
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View ackView = getLayoutInflater().inflate(R.layout.ack_dialog, null);
+        builder.setView(ackView);
+        dialog = builder.create();
+        dialog.show();
+
+        mHandler.sendEmptyMessageDelayed(123, 2000);
+
 
     }
 
@@ -74,6 +104,8 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
 //        zXingScannerView.startCamera();
 //
 //    }
+
+
 
     @Override
     protected void onPause() {
@@ -94,6 +126,7 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
     @Override
     public void handleResult(me.dm7.barcodescanner.zbar.Result result) {
 //        do something with barcode data returned
+        Toast.makeText(this, "DONE", Toast.LENGTH_SHORT).show();
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             return;

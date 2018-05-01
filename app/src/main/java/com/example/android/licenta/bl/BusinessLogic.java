@@ -45,7 +45,7 @@ public class BusinessLogic {
 
 		QrCode qr = QrCode.encodeText(str, errCorLvl);  // Make the QR Code symbol
 //        QrCode qr = QrCode.encodeBinary(bytes, errCorLvl);
-        return qr.toBitmap(100,4);
+        return qr.toBitmap(100,1);
     }
 
     public static Bitmap getBytesQR(byte[] bytes){
