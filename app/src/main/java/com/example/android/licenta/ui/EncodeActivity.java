@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.android.licenta.R;
@@ -30,9 +31,12 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
+import me.dm7.barcodescanner.zbar.ZBarScannerView;
+
 
 public class EncodeActivity extends AppCompatActivity {
     private ImageView qrImageView;
+    private ZBarScannerView mScannerView;
     private Button button;
     String text = "/storage/emulated/0/Download/images.jpg";
     String str;
@@ -81,23 +85,13 @@ public class EncodeActivity extends AppCompatActivity {
                     }
                 });
                 view.setVisibility(View.INVISIBLE);
-//                current++;
-//                if(current > rez.length/step) {
-//                    qrImageView.setImageBitmap(BusinessLogic.getQR("end"));
-//                    button.setVisibility(View.GONE);
-//                } else {
-//                    qrImageView.setImageBitmap(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez, current * step, current * step + step)));
-//                }
-
             }
         });
-//        liveDataQrViewModel = ViewModelProviders.of(this).get(LiveDataQrViewModel.class);
-//        liveDataQrViewModel.getQrCode().observe(this, new Observer<Bitmap>() {
-//            @Override
-//            public void onChanged(@Nullable Bitmap bitmap) {
-//                qrImageView.setImageBitmap(bitmap);
-//            }
-//        });
+
+
+//        mScannerView = new ZBarScannerView(this);           // Programmatically initialize the scanner view
+//        LinearLayout linearLayout = findViewById(R.id.activity_main);
+//        linearLayout.addView(mScannerView);
 
     }
 

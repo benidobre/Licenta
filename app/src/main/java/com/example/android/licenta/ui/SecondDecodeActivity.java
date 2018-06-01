@@ -33,30 +33,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
-//import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class SecondDecodeActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler{
-//    private ZXingScannerView zXingScannerView;
     private ZBarScannerView mScannerView;
     private ImageView qrImageView;
     private File photo ;
     private FileOutputStream fos;
     private Vibrator v;
-    AlertDialog dialog;
-    private Handler mHandler = new Handler() {
-        public void handleMessage(android.os.Message msg) {
-            switch (msg.what) {
-                case 123:
-                    if (dialog != null && dialog.isShowing()) {
-                        dialog.dismiss();
-                    }
-                    break;
 
-                default:
-                    break;
-            }
-        }
-    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,26 +68,14 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "bb.jpg");
         qrImageView = findViewById(R.id.qr_image_view);
-        mScannerView = new ZBarScannerView(this);           // Programmatically initialize the scanner view
-        setContentView(mScannerView);                // Set the scanner view as the content view
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View ackView = getLayoutInflater().inflate(R.layout.ack_dialog, null);
-        builder.setView(ackView);
-        dialog = builder.create();
-        dialog.show();
 
-        mHandler.sendEmptyMessageDelayed(123, 2000);
+        mScannerView = new ZBarScannerView(this);           // Programmatically initialize the scanner view
+        LinearLayout linearLayout = findViewById(R.id.activity_main);
+        linearLayout.addView(mScannerView);
+//        setContentView(mScannerView);
 
 
     }
-
-//    public void scan(View view){
-//        zXingScannerView =new ZXingScannerView(getApplicationContext());
-//        setContentView(zXingScannerView);
-//        zXingScannerView.setResultHandler(this);
-//        zXingScannerView.startCamera();
-//
-//    }
 
 
 

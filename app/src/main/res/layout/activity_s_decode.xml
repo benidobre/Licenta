@@ -8,9 +8,10 @@
               tools:context=".ui.SecondDecodeActivity">
 
     <ImageView
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:scaleType="fitStart"
             android:src="@drawable/ack"
+            android:layout_gravity="center_horizontal"
             android:id="@+id/qr_image_view"/>
 </LinearLayout>
