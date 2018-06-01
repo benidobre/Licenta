@@ -30,19 +30,22 @@ import com.example.android.licenta.bl.BusinessLogic;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
 
-public class EncodeActivity extends AppCompatActivity {
+public class EncodeActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler {
     private ImageView qrImageView;
     private ZBarScannerView mScannerView;
     private Button button;
     String text = "/storage/emulated/0/Download/images.jpg";
     String str;
     int current = 0;
-    public static final int step = 512;
-    public static byte[] rez;
+    public  final int step = 100;
+    public  byte[] rez;
     LiveDataQrViewModel liveDataQrViewModel;
 
 
@@ -68,30 +71,25 @@ public class EncodeActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
 
-        qrImageView = findViewById(R.id.qr_image_view);
+        qrImageView = findViewById(R.id.qr_image_view_2);
 
-//        qrImageView.setImageBitmap(BusinessLogic.getQR("focus"));
+        File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fb.jpg");
+        rez = BusinessLogic.fullyReadFileToBytes(imgFile);
 
+        qrImageView.setImageBitmap(BusinessLogic.getQR("focus"));
 
-        button = findViewById(R.id.button_next_qr);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                liveDataQrViewModel = ViewModelProviders.of(EncodeActivity.this).get(LiveDataQrViewModel.class);
-                liveDataQrViewModel.getQrCode().observe(EncodeActivity.this, new Observer<Bitmap>() {
-                    @Override
-                    public void onChanged(@Nullable Bitmap bitmap) {
-                        qrImageView.setImageBitmap(bitmap);
-                    }
-                });
-                view.setVisibility(View.INVISIBLE);
-            }
-        });
+        if(current > rez.length/step) {
+            qrImageView.setImageBitmap(BusinessLogic.getQR("end"));
+        } else {
+            qrImageView.setImageBitmap(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez, current * step, current * step + step)));
+        }
+        current++;
 
 
-//        mScannerView = new ZBarScannerView(this);           // Programmatically initialize the scanner view
-//        LinearLayout linearLayout = findViewById(R.id.activity_main);
-//        linearLayout.addView(mScannerView);
+
+        mScannerView = new ZBarScannerView(this);           // Programmatically initialize the scanner view
+        LinearLayout linearLayout = findViewById(R.id.activity_main_2);
+        linearLayout.addView(mScannerView);
 
     }
 
@@ -113,5 +111,33 @@ public class EncodeActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    @Override
+    public void handleResult(Result rawResult) {
+        String s = rawResult.getContents();
+        if(s.equals("ack")) {
+            if(current > rez.length/step) {
+                qrImageView.setImageBitmap(BusinessLogic.getQR("end"));
+            } else {
+                qrImageView.setImageBitmap(BusinessLogic.getQR("end"));
+            }
+            current++;
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(mScannerView != null) {
+            mScannerView.stopCamera();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
+        mScannerView.startCamera();          // Start camera on resume
     }
 }

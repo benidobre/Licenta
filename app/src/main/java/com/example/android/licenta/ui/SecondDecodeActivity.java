@@ -103,6 +103,7 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
                 != PackageManager.PERMISSION_GRANTED) {
             return;
         }
+        qrImageView.setImageBitmap(BusinessLogic.getQR("end"));
         try {
             if(result.getContents().equalsIgnoreCase("end")) {
                 fos.close();

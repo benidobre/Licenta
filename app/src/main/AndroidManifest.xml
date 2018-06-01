@@ -19,7 +19,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".ui.EncodeActivity">
+        <activity android:name=".ui.EncodeActivity"
+                  android:configChanges="orientation"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -28,7 +30,9 @@
         </activity>
         <activity android:name=".ui.DecodeActivity">
         </activity>
-        <activity android:name=".ui.SecondDecodeActivity">
+        <activity android:name=".ui.SecondDecodeActivity"
+                  android:configChanges="orientation"
+                  android:screenOrientation="portrait">
         </activity>
     </application>
 

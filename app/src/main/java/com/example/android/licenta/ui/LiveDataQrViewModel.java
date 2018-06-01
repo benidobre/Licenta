@@ -17,7 +17,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-import static com.example.android.licenta.ui.EncodeActivity.step;
 
 /**
  * Created by bdobre on 4/22/18.
@@ -31,27 +30,28 @@ public class LiveDataQrViewModel extends ViewModel {
     private byte[] rez;
     private int period = 2*ONE_SECOND;
 
-    public LiveDataQrViewModel() {
-        File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "bb.jpg");
-        rez = BusinessLogic.fullyReadFileToBytes(imgFile);
-        Timer timer = new Timer();
-
-        // Update the elapsed time every second.
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if(current > rez.length/step) {
-                    qrCode.postValue(BusinessLogic.getQR("end"));
-                } else {
-                    qrCode.postValue(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez, current * step, current * step + step)));
-                }
-                current++;
-            }
-        }, 0, period);
-
-    }
-
-    public LiveData<Bitmap> getQrCode() {
-        return qrCode;
-    }
+//    public LiveDataQrViewModel() {
+//        File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fb.jpg");
+//        rez = BusinessLogic.fullyReadFileToBytes(imgFile);
+//        if(current > rez.length/step) {
+//            qrCode.postValue(BusinessLogic.getQR("end"));
+//        } else {
+//            qrCode.postValue(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez, current * step, current * step + step)));
+//        }
+//        current++;
+//
+//    }
+//
+//    public void next() {
+//        if(current > rez.length/step) {
+//            qrCode.postValue(BusinessLogic.getQR("end"));
+//        } else {
+//            qrCode.postValue(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez, current * step, current * step + step)));
+//        }
+//        current++;
+//    }
+//
+//    public LiveData<Bitmap> getQrCode() {
+//        return qrCode;
+//    }
 }
