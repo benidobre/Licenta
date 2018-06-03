@@ -40,6 +40,7 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
     private File photo ;
     private FileOutputStream fos;
     private Vibrator v;
+    public  byte[] rez;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,10 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
         LinearLayout linearLayout = findViewById(R.id.activity_main);
         linearLayout.addView(mScannerView);
 //        setContentView(mScannerView);
+
+
+        File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fb.jpg");
+        rez = BusinessLogic.fullyReadFileToBytes(imgFile);
 
 
     }

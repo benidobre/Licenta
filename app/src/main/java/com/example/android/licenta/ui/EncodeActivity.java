@@ -40,12 +40,6 @@ import me.dm7.barcodescanner.zbar.ZBarScannerView;
 public class EncodeActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler {
     private ImageView qrImageView;
     private ZBarScannerView mScannerView;
-    private Button button;
-    String text = "/storage/emulated/0/Download/images.jpg";
-    String str;
-    int current = 0;
-    public  final int step = 100;
-    public  byte[] rez;
     LiveDataQrViewModel liveDataQrViewModel;
 
 
@@ -73,23 +67,17 @@ public class EncodeActivity extends AppCompatActivity implements ZBarScannerView
 
         qrImageView = findViewById(R.id.qr_image_view_2);
 
-        File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fb.jpg");
-        rez = BusinessLogic.fullyReadFileToBytes(imgFile);
-
-        qrImageView.setImageBitmap(BusinessLogic.getQR("focus"));
-
-        if(current > rez.length/step) {
-            qrImageView.setImageBitmap(BusinessLogic.getQR("end"));
-        } else {
-            qrImageView.setImageBitmap(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez, current * step, current * step + step)));
-        }
-        current++;
-
-
-
         mScannerView = new ZBarScannerView(this);           // Programmatically initialize the scanner view
         LinearLayout linearLayout = findViewById(R.id.activity_main_2);
         linearLayout.addView(mScannerView);
+
+        liveDataQrViewModel = ViewModelProviders.of(EncodeActivity.this).get(LiveDataQrViewModel.class);
+        liveDataQrViewModel.getQrCode().observe(EncodeActivity.this, new Observer<Bitmap>() {
+            @Override
+            public void onChanged(@Nullable Bitmap bitmap) {
+                qrImageView.setImageBitmap(bitmap);
+            }
+        });
 
     }
 
@@ -117,13 +105,9 @@ public class EncodeActivity extends AppCompatActivity implements ZBarScannerView
     public void handleResult(Result rawResult) {
         String s = rawResult.getContents();
         if(s.equals("ack")) {
-            if(current > rez.length/step) {
-                qrImageView.setImageBitmap(BusinessLogic.getQR("end"));
-            } else {
-                qrImageView.setImageBitmap(BusinessLogic.getQR("end"));
-            }
-            current++;
+            liveDataQrViewModel.next();
         }
+        mScannerView.resumeCameraPreview(this);
     }
 
     @Override

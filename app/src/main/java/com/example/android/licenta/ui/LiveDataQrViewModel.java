@@ -29,29 +29,32 @@ public class LiveDataQrViewModel extends ViewModel {
     private int current = 0;
     private byte[] rez;
     private int period = 2*ONE_SECOND;
+    private int step = 100;
+    private int nrSteps;
 
-//    public LiveDataQrViewModel() {
-//        File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fb.jpg");
-//        rez = BusinessLogic.fullyReadFileToBytes(imgFile);
-//        if(current > rez.length/step) {
-//            qrCode.postValue(BusinessLogic.getQR("end"));
-//        } else {
-//            qrCode.postValue(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez, current * step, current * step + step)));
-//        }
-//        current++;
-//
-//    }
-//
-//    public void next() {
-//        if(current > rez.length/step) {
-//            qrCode.postValue(BusinessLogic.getQR("end"));
-//        } else {
-//            qrCode.postValue(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez, current * step, current * step + step)));
-//        }
-//        current++;
-//    }
-//
-//    public LiveData<Bitmap> getQrCode() {
-//        return qrCode;
-//    }
+    public LiveDataQrViewModel() {
+        File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fb.jpg");
+        rez = BusinessLogic.fullyReadFileToBytes(imgFile);
+        nrSteps = rez.length/step;
+        if(current > nrSteps) {
+            qrCode.postValue(BusinessLogic.getQR("end"));
+        } else {
+            qrCode.postValue(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez, current * step, current * step + step)));
+        }
+        current++;
+
+    }
+
+    public void next() {
+        if(current > nrSteps) {
+            qrCode.postValue(BusinessLogic.getQR("end"));
+        } else {
+            qrCode.postValue(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez, current * step, current * step + step)));
+        }
+        current++;
+    }
+
+    public LiveData<Bitmap> getQrCode() {
+        return qrCode;
+    }
 }
