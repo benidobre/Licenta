@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Message;
 import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -31,8 +32,11 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
+import okio.Buffer;
 
 public class SecondDecodeActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler{
     private ZBarScannerView mScannerView;
@@ -100,15 +104,21 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
     }
 
     byte[] last = new byte[10];
+    boolean keepAck ;
+    long DELAY = 2000;
+
+    public Handler ackHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            qrImageView.setImageResource(0);
+        }
+    };
     @Override
     public void handleResult(me.dm7.barcodescanner.zbar.Result result) {
-//        do something with barcode data returned
-        Toast.makeText(this, "DONE", Toast.LENGTH_SHORT).show();
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        qrImageView.setImageBitmap(BusinessLogic.getQR("end"));
+        v.vibrate(300);
         try {
             if(result.getContents().equalsIgnoreCase("end")) {
                 fos.close();
@@ -117,14 +127,14 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
                 return;
             }
 
-            if(result.getContents().equalsIgnoreCase("focus")) {
-                return;
-            }
-
             byte[] rez = result.getContents().getBytes(StandardCharsets.ISO_8859_1);
 
             if(Arrays.equals(BusinessLogic.subArray(rez,0,10),last)) {
                 return;
+            } else {
+                int n = rez.length;
+                byte[] currentStep = BusinessLogic.subArray(rez,n-4,n);
+                qrImageView.setImageBitmap(BusinessLogic.getBytesQR(currentStep));
             }
             last = BusinessLogic.subArray(rez,0,10);
 

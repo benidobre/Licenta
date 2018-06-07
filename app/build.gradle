@@ -29,6 +29,7 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
     compile 'com.google.android.gms:play-services-vision:9.4.0+'
     compile 'com.android.support:design:24.2.0'
+    implementation 'com.squareup.okio:okio:1.14.1'
 
     compile 'android.arch.lifecycle:extensions:' + rootProject.archLifecycleVersion
     compile 'android.arch.persistence.room:runtime:' + rootProject.archRoomVersion

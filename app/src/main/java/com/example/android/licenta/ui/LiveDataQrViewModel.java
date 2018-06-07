@@ -13,6 +13,7 @@ import android.view.View;
 import com.example.android.licenta.bl.BusinessLogic;
 
 import java.io.File;
+import java.nio.ByteBuffer;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -39,7 +40,12 @@ public class LiveDataQrViewModel extends ViewModel {
         if(current > nrSteps) {
             qrCode.postValue(BusinessLogic.getQR("end"));
         } else {
-            qrCode.postValue(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez, current * step, current * step + step)));
+            byte[] bytes = BusinessLogic.subArray(rez, current * step, current * step + step);
+            byte[] stepInBytes = ByteBuffer.allocate(4).putInt(current).array();
+            byte[] destination = new byte[bytes.length + stepInBytes.length];
+            System.arraycopy(bytes, 0, destination, 0, bytes.length);
+            System.arraycopy(stepInBytes, 0, destination, bytes.length, stepInBytes.length);
+            qrCode.postValue(BusinessLogic.getBytesQR(destination));
         }
         current++;
 
@@ -49,12 +55,25 @@ public class LiveDataQrViewModel extends ViewModel {
         if(current > nrSteps) {
             qrCode.postValue(BusinessLogic.getQR("end"));
         } else {
-            qrCode.postValue(BusinessLogic.getBytesQR(BusinessLogic.subArray(rez, current * step, current * step + step)));
+            byte[] bytes = BusinessLogic.subArray(rez, current * step, current * step + step);
+            byte[] stepInBytes = ByteBuffer.allocate(4).putInt(current).array();
+            byte[] destination = new byte[bytes.length + stepInBytes.length];
+            System.arraycopy(bytes, 0, destination, 0, bytes.length);
+            System.arraycopy(stepInBytes, 0, destination, bytes.length, stepInBytes.length);
+            qrCode.postValue(BusinessLogic.getBytesQR(destination));
         }
         current++;
     }
 
     public LiveData<Bitmap> getQrCode() {
         return qrCode;
+    }
+
+    public int getCurrent() {
+        return current;
+    }
+
+    public int getStep() {
+        return step;
     }
 }

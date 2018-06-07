@@ -3,11 +3,13 @@ package com.example.android.licenta.ui;
 import android.Manifest;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -29,7 +31,9 @@ import com.example.android.licenta.bl.BusinessLogic;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -41,6 +45,7 @@ public class EncodeActivity extends AppCompatActivity implements ZBarScannerView
     private ImageView qrImageView;
     private ZBarScannerView mScannerView;
     LiveDataQrViewModel liveDataQrViewModel;
+    Vibrator v;
 
 
     @Override
@@ -61,8 +66,7 @@ public class EncodeActivity extends AppCompatActivity implements ZBarScannerView
 
         }
 
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
 
         qrImageView = findViewById(R.id.qr_image_view_2);
@@ -104,7 +108,10 @@ public class EncodeActivity extends AppCompatActivity implements ZBarScannerView
     @Override
     public void handleResult(Result rawResult) {
         String s = rawResult.getContents();
-        if(s.equals("ack")) {
+        v.vibrate(300);
+        byte[] stepInBytes = ByteBuffer.allocate(4).putInt(liveDataQrViewModel.getCurrent()-1).array();
+        byte[] ackStep = rawResult.getContents().getBytes(StandardCharsets.ISO_8859_1);
+        if(Arrays.equals(ackStep,stepInBytes)) {
             liveDataQrViewModel.next();
         }
         mScannerView.resumeCameraPreview(this);

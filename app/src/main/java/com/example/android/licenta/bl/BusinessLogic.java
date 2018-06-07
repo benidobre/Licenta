@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.Hashtable;
 
 /**
@@ -50,6 +51,8 @@ public class BusinessLogic {
 
     public static Bitmap getBytesQR(byte[] bytes){
         QrCode.Ecc errCorLvl = QrCode.Ecc.LOW;  // Error correction level
+
+
 
         QrCode qr = QrCode.encodeBinary(bytes, errCorLvl);
         return qr.toBitmap(10,4);
