@@ -7,33 +7,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.android.licenta.R;
-import com.example.android.licenta.bl.BusinessLogic;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -46,6 +36,10 @@ public class EncodeActivity extends AppCompatActivity implements ZBarScannerView
     private ZBarScannerView mScannerView;
     LiveDataQrViewModel liveDataQrViewModel;
     Vibrator v;
+    private long timestamp;
+    private long PERIOD = 5000;
+    private int nrOfACKToUpgrade = 3;
+    private int nrOfACK;
 
 
     @Override
@@ -83,6 +77,26 @@ public class EncodeActivity extends AppCompatActivity implements ZBarScannerView
             }
         });
 
+        Timer timer = new Timer();
+        timestamp = new Date().getTime();
+        nrOfACK = 0;
+        // Update the elapsed time every second.
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (new Date().getTime() - timestamp > 5000) {
+                    liveDataQrViewModel.downScale();
+                } else {
+                    nrOfACK++;
+                    if(nrOfACK >= nrOfACKToUpgrade) {
+                        liveDataQrViewModel.upScale();
+                    }
+                }
+
+
+            }
+        }, 0, 5000);
+
     }
 
     @Override
@@ -112,6 +126,7 @@ public class EncodeActivity extends AppCompatActivity implements ZBarScannerView
         byte[] stepInBytes = ByteBuffer.allocate(4).putInt(liveDataQrViewModel.getCurrent()).array();
         byte[] ackStep = rawResult.getContents().getBytes(StandardCharsets.ISO_8859_1);
         if(Arrays.equals(ackStep,stepInBytes)) {
+            timestamp = new Date().getTime();
             liveDataQrViewModel.next();
         }
         mScannerView.resumeCameraPreview(this);
