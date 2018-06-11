@@ -38,6 +38,8 @@ import java.util.TimerTask;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
 import okio.Buffer;
 
+import static com.example.android.licenta.ui.LiveDataQrViewModel.STEP_ENCODING_LENGTH;
+
 public class SecondDecodeActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler{
     private ZBarScannerView mScannerView;
     private ImageView qrImageView;
@@ -77,7 +79,6 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
         mScannerView = new ZBarScannerView(this);           // Programmatically initialize the scanner view
         LinearLayout linearLayout = findViewById(R.id.activity_main);
         linearLayout.addView(mScannerView);
-//        setContentView(mScannerView);
 
 
         File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fb.jpg");
@@ -104,14 +105,7 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
     }
 
     byte[] last = new byte[10];
-    boolean keepAck ;
-    long DELAY = 2000;
 
-    public Handler ackHandler = new Handler() {
-        public void handleMessage(Message msg) {
-            qrImageView.setImageResource(0);
-        }
-    };
     @Override
     public void handleResult(me.dm7.barcodescanner.zbar.Result result) {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -128,12 +122,12 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
             }
 
             byte[] rez = result.getContents().getBytes(StandardCharsets.ISO_8859_1);
+            int dataLength = rez.length - STEP_ENCODING_LENGTH;
 
             if(Arrays.equals(BusinessLogic.subArray(rez,0,10),last)) {
                 return;
             } else {
-                int n = rez.length;
-                byte[] currentStep = BusinessLogic.subArray(rez,n-4,n);
+                byte[] currentStep = BusinessLogic.subArray(rez, dataLength , dataLength + STEP_ENCODING_LENGTH);
                 qrImageView.setImageBitmap(BusinessLogic.getBytesQR(currentStep));
             }
             last = BusinessLogic.subArray(rez,0,10);
@@ -144,7 +138,7 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
                 }
                 fos = new FileOutputStream(photo.getPath(), true);
             }
-            fos.write(rez);
+            fos.write(rez,0, dataLength);
 
 
         } catch (UnsupportedEncodingException e) {

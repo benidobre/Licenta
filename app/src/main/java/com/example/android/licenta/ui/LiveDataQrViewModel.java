@@ -25,13 +25,14 @@ import java.util.TimerTask;
 
 public class LiveDataQrViewModel extends ViewModel {
 
-    private static final int ONE_SECOND = 1000;
+    public int ONE_SECOND = 1000;
     private MutableLiveData<Bitmap> qrCode = new MutableLiveData<>();
     private int current = 0;
     private byte[] rez;
     private int period = 2*ONE_SECOND;
     private int step = 100;
     private int nrSteps;
+    public static int STEP_ENCODING_LENGTH = 4;
 
     public LiveDataQrViewModel() {
         File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fb.jpg");
@@ -41,7 +42,7 @@ public class LiveDataQrViewModel extends ViewModel {
             qrCode.postValue(BusinessLogic.getQR("end"));
         } else {
             byte[] bytes = BusinessLogic.subArray(rez, current * step, current * step + step);
-            byte[] stepInBytes = ByteBuffer.allocate(4).putInt(current).array();
+            byte[] stepInBytes = ByteBuffer.allocate(STEP_ENCODING_LENGTH).putInt(current).array();
             byte[] destination = new byte[bytes.length + stepInBytes.length];
             System.arraycopy(bytes, 0, destination, 0, bytes.length);
             System.arraycopy(stepInBytes, 0, destination, bytes.length, stepInBytes.length);
@@ -56,7 +57,7 @@ public class LiveDataQrViewModel extends ViewModel {
             qrCode.postValue(BusinessLogic.getQR("end"));
         } else {
             byte[] bytes = BusinessLogic.subArray(rez, current * step, current * step + step);
-            byte[] stepInBytes = ByteBuffer.allocate(4).putInt(current).array();
+            byte[] stepInBytes = ByteBuffer.allocate(STEP_ENCODING_LENGTH).putInt(current).array();
             byte[] destination = new byte[bytes.length + stepInBytes.length];
             System.arraycopy(bytes, 0, destination, 0, bytes.length);
             System.arraycopy(stepInBytes, 0, destination, bytes.length, stepInBytes.length);
