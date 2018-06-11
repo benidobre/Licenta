@@ -109,7 +109,7 @@ public class EncodeActivity extends AppCompatActivity implements ZBarScannerView
     public void handleResult(Result rawResult) {
         String s = rawResult.getContents();
         v.vibrate(300);
-        byte[] stepInBytes = ByteBuffer.allocate(4).putInt(liveDataQrViewModel.getCurrent()-1).array();
+        byte[] stepInBytes = ByteBuffer.allocate(4).putInt(liveDataQrViewModel.getCurrent()).array();
         byte[] ackStep = rawResult.getContents().getBytes(StandardCharsets.ISO_8859_1);
         if(Arrays.equals(ackStep,stepInBytes)) {
             liveDataQrViewModel.next();

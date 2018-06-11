@@ -31,39 +31,40 @@ public class LiveDataQrViewModel extends ViewModel {
     private byte[] rez;
     private int period = 2*ONE_SECOND;
     private int step = 100;
-    private int nrSteps;
+    private int progress = 0;
     public static int STEP_ENCODING_LENGTH = 4;
 
     public LiveDataQrViewModel() {
         File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fb.jpg");
         rez = BusinessLogic.fullyReadFileToBytes(imgFile);
-        nrSteps = rez.length/step;
-        if(current > nrSteps) {
+        if(progress > rez.length) {
             qrCode.postValue(BusinessLogic.getQR("end"));
         } else {
-            byte[] bytes = BusinessLogic.subArray(rez, current * step, current * step + step);
+            byte[] bytes = BusinessLogic.subArray(rez, progress, progress + step);
             byte[] stepInBytes = ByteBuffer.allocate(STEP_ENCODING_LENGTH).putInt(current).array();
             byte[] destination = new byte[bytes.length + stepInBytes.length];
             System.arraycopy(bytes, 0, destination, 0, bytes.length);
             System.arraycopy(stepInBytes, 0, destination, bytes.length, stepInBytes.length);
             qrCode.postValue(BusinessLogic.getBytesQR(destination));
         }
-        current++;
+        progress += step;
 
     }
 
     public void next() {
-        if(current > nrSteps) {
+        current++;
+        if(progress > rez.length) {
             qrCode.postValue(BusinessLogic.getQR("end"));
         } else {
-            byte[] bytes = BusinessLogic.subArray(rez, current * step, current * step + step);
+            byte[] bytes = BusinessLogic.subArray(rez, progress, progress + step);
             byte[] stepInBytes = ByteBuffer.allocate(STEP_ENCODING_LENGTH).putInt(current).array();
             byte[] destination = new byte[bytes.length + stepInBytes.length];
             System.arraycopy(bytes, 0, destination, 0, bytes.length);
             System.arraycopy(stepInBytes, 0, destination, bytes.length, stepInBytes.length);
             qrCode.postValue(BusinessLogic.getBytesQR(destination));
         }
-        current++;
+        progress += step;
+
     }
 
     public LiveData<Bitmap> getQrCode() {
