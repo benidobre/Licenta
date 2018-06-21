@@ -14,6 +14,7 @@ import com.example.android.licenta.bl.BusinessLogic;
 
 import java.io.File;
 import java.nio.ByteBuffer;
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -41,7 +42,7 @@ public class LiveDataQrViewModel extends ViewModel {
         if(progress > rez.length) {
             qrCode.postValue(BusinessLogic.getQR("end"));
         } else {
-            byte[] bytes = BusinessLogic.subArray(rez, progress, progress + step);
+            byte[] bytes = Arrays.copyOfRange(rez, progress, progress + step);
             byte[] stepInBytes = ByteBuffer.allocate(STEP_ENCODING_LENGTH).putInt(current).array();
             byte[] destination = new byte[bytes.length + stepInBytes.length];
             System.arraycopy(bytes, 0, destination, 0, bytes.length);
@@ -57,7 +58,7 @@ public class LiveDataQrViewModel extends ViewModel {
         if(progress > rez.length) {
             qrCode.postValue(BusinessLogic.getQR("end"));
         } else {
-            byte[] bytes = BusinessLogic.subArray(rez, progress, progress + step);
+            byte[] bytes = Arrays.copyOfRange(rez, progress, progress + step);
             byte[] stepInBytes = ByteBuffer.allocate(STEP_ENCODING_LENGTH).putInt(current).array();
             byte[] destination = new byte[bytes.length + stepInBytes.length];
             System.arraycopy(bytes, 0, destination, 0, bytes.length);
@@ -88,7 +89,7 @@ public class LiveDataQrViewModel extends ViewModel {
             step = versions[i-1];
         }
 
-        byte[] bytes = BusinessLogic.subArray(rez, progress, progress + step);
+        byte[] bytes = Arrays.copyOfRange(rez, progress, progress + step);
         byte[] stepInBytes = ByteBuffer.allocate(STEP_ENCODING_LENGTH).putInt(current).array();
         byte[] destination = new byte[bytes.length + stepInBytes.length];
         System.arraycopy(bytes, 0, destination, 0, bytes.length);

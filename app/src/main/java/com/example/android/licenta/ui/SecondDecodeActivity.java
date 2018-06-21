@@ -30,6 +30,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Timer;
@@ -47,6 +48,7 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
     private FileOutputStream fos;
     private Vibrator v;
     public  byte[] rez;
+    private int current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,13 +126,17 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
             byte[] rez = result.getContents().getBytes(StandardCharsets.ISO_8859_1);
             int dataLength = rez.length - STEP_ENCODING_LENGTH;
 
-            if(Arrays.equals(BusinessLogic.subArray(rez,0,10),last)) {
+            if(Arrays.equals(Arrays.copyOfRange(rez,0,10),last)) {
                 return;
             } else {
-                byte[] currentStep = BusinessLogic.subArray(rez, dataLength , dataLength + STEP_ENCODING_LENGTH);
-                qrImageView.setImageBitmap(BusinessLogic.getBytesQR(currentStep));
+                byte[] stepInBytes = ByteBuffer.allocate(4).putInt(current).array();
+                byte[] currentStep = Arrays.copyOfRange(rez, dataLength , dataLength + STEP_ENCODING_LENGTH);
+                if(Arrays.equals(currentStep,stepInBytes)) {
+                    current++;
+                    qrImageView.setImageBitmap(BusinessLogic.getBytesQR(currentStep));
+                }
             }
-            last = BusinessLogic.subArray(rez,0,10);
+            last = Arrays.copyOfRange(rez,0,10);
 
             if(fos == null) {
                 if (photo.exists()) {
