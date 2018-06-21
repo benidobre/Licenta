@@ -4,40 +4,29 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
 import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.android.licenta.R;
 import com.example.android.licenta.bl.BusinessLogic;
-import com.google.zxing.Result;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
-import okio.Buffer;
 
 import static com.example.android.licenta.ui.LiveDataQrViewModel.STEP_ENCODING_LENGTH;
 
@@ -47,8 +36,10 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
     private File photo ;
     private FileOutputStream fos;
     private Vibrator v;
-    public  byte[] rez;
+    public  byte[] input;
     private int current;
+    private int progress;
+    private byte[] destination;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +75,8 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
 
 
         File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fb.jpg");
-        rez = BusinessLogic.fullyReadFileToBytes(imgFile);
+        input = BusinessLogic.fullyReadFileToBytes(imgFile);
+        destination = new byte[input.length+500];
 
 
     }
@@ -106,7 +98,8 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
         mScannerView.startCamera();          // Start camera on resume
     }
 
-    byte[] last = new byte[10];
+    byte[] last;
+//    int previousACK;
 
     @Override
     public void handleResult(me.dm7.barcodescanner.zbar.Result result) {
@@ -117,26 +110,36 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
         v.vibrate(300);
         try {
             if(result.getContents().equalsIgnoreCase("end")) {
+                fos.write(destination,0, progress);
                 fos.close();
                 fos = null;
                 finish();
                 return;
             }
 
-            byte[] rez = result.getContents().getBytes(StandardCharsets.ISO_8859_1);
-            int dataLength = rez.length - STEP_ENCODING_LENGTH;
+            byte[] received = result.getContents().getBytes(StandardCharsets.ISO_8859_1);
+            int dataLength = received.length - STEP_ENCODING_LENGTH;
 
-            if(Arrays.equals(Arrays.copyOfRange(rez,0,10),last)) {
+            if(Arrays.equals(Arrays.copyOfRange(received,0,10),last)) {
                 return;
             } else {
                 byte[] stepInBytes = ByteBuffer.allocate(4).putInt(current).array();
-                byte[] currentStep = Arrays.copyOfRange(rez, dataLength , dataLength + STEP_ENCODING_LENGTH);
+                byte[] previousStepInBytes = ByteBuffer.allocate(4).putInt(current-1).array();
+                byte[] currentStep = Arrays.copyOfRange(received, dataLength , dataLength + STEP_ENCODING_LENGTH);
                 if(Arrays.equals(currentStep,stepInBytes)) {
                     current++;
+                    System.arraycopy(received, 0, destination, progress, dataLength);
+                    progress += dataLength;
                     qrImageView.setImageBitmap(BusinessLogic.getBytesQR(currentStep));
                 }
+//                else if(Arrays.equals(currentStep,previousStepInBytes)){
+//                    progress -= last.length + STEP_ENCODING_LENGTH;
+//                    System.arraycopy(received, 0, destination, progress, dataLength);
+//                    progress += dataLength;
+//                    qrImageView.setImageBitmap(BusinessLogic.getBytesQR(currentStep));
+//                }
             }
-            last = Arrays.copyOfRange(rez,0,10);
+            last = received;
 
             if(fos == null) {
                 if (photo.exists()) {
@@ -144,7 +147,6 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
                 }
                 fos = new FileOutputStream(photo.getPath(), true);
             }
-            fos.write(rez,0, dataLength);
 
 
         } catch (UnsupportedEncodingException e) {
