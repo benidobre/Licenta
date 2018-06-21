@@ -77,25 +77,25 @@ public class EncodeActivity extends AppCompatActivity implements ZBarScannerView
             }
         });
 
-//        Timer timer = new Timer();
-//        timestamp = new Date().getTime();
-//        nrOfACK = 0;
-//        // Update the elapsed time every second.
-//        timer.scheduleAtFixedRate(new TimerTask() {
-//            @Override
-//            public void run() {
-//                if (new Date().getTime() - timestamp > PERIOD) {
-//                    liveDataQrViewModel.downScale();
-//                } else {
-//                    nrOfACK++;
-//                    if(nrOfACK >= nrOfACKToUpgrade) {
-//                        liveDataQrViewModel.upScale();
-//                    }
-//                }
-//
-//
-//            }
-//        }, 0, PERIOD);
+        Timer timer = new Timer();
+        timestamp = new Date().getTime();
+        nrOfACK = 0;
+        // Update the elapsed time every second.
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (new Date().getTime() - timestamp > PERIOD) {
+                    liveDataQrViewModel.downScale();
+                } else {
+                    nrOfACK++;
+                    if(nrOfACK >= nrOfACKToUpgrade) {
+                        liveDataQrViewModel.upScale();
+                    }
+                }
+
+
+            }
+        }, 0, PERIOD);
 
     }
 

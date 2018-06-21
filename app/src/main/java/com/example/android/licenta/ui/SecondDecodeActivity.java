@@ -37,8 +37,8 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
     private FileOutputStream fos;
     private Vibrator v;
     public  byte[] input;
-    private int current;
-    private int progress;
+    private int current = 0;
+    private int progress = 0;
     private byte[] destination;
 
     @Override
@@ -120,7 +120,7 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
             byte[] received = result.getContents().getBytes(StandardCharsets.ISO_8859_1);
             int dataLength = received.length - STEP_ENCODING_LENGTH;
 
-            if(Arrays.equals(Arrays.copyOfRange(received,0,10),last)) {
+            if(Arrays.equals(received,last)) {
                 return;
             } else {
                 byte[] stepInBytes = ByteBuffer.allocate(4).putInt(current).array();
@@ -128,16 +128,21 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
                 byte[] currentStep = Arrays.copyOfRange(received, dataLength , dataLength + STEP_ENCODING_LENGTH);
                 if(Arrays.equals(currentStep,stepInBytes)) {
                     current++;
+                    if(progress < 0) {
+                        int i = 0;
+                    }
                     System.arraycopy(received, 0, destination, progress, dataLength);
                     progress += dataLength;
                     qrImageView.setImageBitmap(BusinessLogic.getBytesQR(currentStep));
                 }
-//                else if(Arrays.equals(currentStep,previousStepInBytes)){
-//                    progress -= last.length + STEP_ENCODING_LENGTH;
-//                    System.arraycopy(received, 0, destination, progress, dataLength);
-//                    progress += dataLength;
-//                    qrImageView.setImageBitmap(BusinessLogic.getBytesQR(currentStep));
-//                }
+                else if(Arrays.equals(currentStep,previousStepInBytes)){
+                    progress -= (last.length - STEP_ENCODING_LENGTH);
+                    System.arraycopy(received, 0, destination, progress, dataLength);
+                    progress += dataLength;
+//                    progress -= (last.length - received.length);
+
+                    qrImageView.setImageBitmap(BusinessLogic.getBytesQR(currentStep));
+                }
             }
             last = received;
 
