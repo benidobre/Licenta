@@ -36,39 +36,6 @@ public class LiveDataQrViewModel extends ViewModel {
     public static int STEP_ENCODING_LENGTH = 4;
     private int[] versions = {17, 32, 53, 78, 106};
 
-    public LiveDataQrViewModel() {
-        File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fb.jpg");
-        rez = BusinessLogic.fullyReadFileToBytes(imgFile);
-        if(progress > rez.length) {
-            qrCode.postValue(BusinessLogic.getQR("end"));
-        } else {
-            byte[] bytes = Arrays.copyOfRange(rez, progress, progress + step);
-            byte[] stepInBytes = ByteBuffer.allocate(STEP_ENCODING_LENGTH).putInt(current).array();
-            byte[] destination = new byte[bytes.length + stepInBytes.length];
-            System.arraycopy(bytes, 0, destination, 0, bytes.length);
-            System.arraycopy(stepInBytes, 0, destination, bytes.length, stepInBytes.length);
-            qrCode.postValue(BusinessLogic.getBytesQR(destination));
-        }
-        progress += step;
-
-    }
-
-    public void next() {
-        current++;
-        if(progress > rez.length) {
-            qrCode.postValue(BusinessLogic.getQR("end"));
-        } else {
-            byte[] bytes = Arrays.copyOfRange(rez, progress, progress + step);
-            byte[] stepInBytes = ByteBuffer.allocate(STEP_ENCODING_LENGTH).putInt(current).array();
-            byte[] destination = new byte[bytes.length + stepInBytes.length];
-            System.arraycopy(bytes, 0, destination, 0, bytes.length);
-            System.arraycopy(stepInBytes, 0, destination, bytes.length, stepInBytes.length);
-            qrCode.postValue(BusinessLogic.getBytesQR(destination));
-        }
-        progress += step;
-
-    }
-
     public LiveData<Bitmap> getQrCode() {
         return qrCode;
     }
@@ -77,28 +44,50 @@ public class LiveDataQrViewModel extends ViewModel {
         return current;
     }
 
-    public void downScale() {
-        progress -= step;
-        int i;
-        for (i = 0; i < versions.length; ++i) {
-            if (step == versions[i]) {
-                break;
-            }
+    public LiveDataQrViewModel() {
+        File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fb.jpg");
+        rez = BusinessLogic.fullyReadFileToBytes(imgFile);
+        if(progress > rez.length) {
+            qrCode.postValue(BusinessLogic.getQR("end"));
+        } else {
+            qrCode.postValue(BusinessLogic.getBytesQR(getPackage()));
         }
-        if (i > 0) {
-            step = versions[i-1];
-        }
+        progress += step;
+    }
 
+    private byte[] getPackage() {
         byte[] bytes = Arrays.copyOfRange(rez, progress, progress + step);
         byte[] stepInBytes = ByteBuffer.allocate(STEP_ENCODING_LENGTH).putInt(current).array();
         byte[] destination = new byte[bytes.length + stepInBytes.length];
         System.arraycopy(bytes, 0, destination, 0, bytes.length);
         System.arraycopy(stepInBytes, 0, destination, bytes.length, stepInBytes.length);
-        qrCode.postValue(BusinessLogic.getBytesQR(destination));
+        return destination;
+    }
+
+    public void next() {
+        current++;
+        if(progress > rez.length) {
+            qrCode.postValue(BusinessLogic.getQR("end"));
+        } else {
+            qrCode.postValue(BusinessLogic.getBytesQR(getPackage()));
+        }
+        progress += step;
+    }
+
+    public void downScale() {
+        progress -= step;
+
+        step = findLowerVersionSize();
+
+        qrCode.postValue(BusinessLogic.getBytesQR(getPackage()));
         progress += step;
     }
 
     public void upScale() {
+        step = findUpperVersionSize();
+    }
+
+    private int findUpperVersionSize() {
         int i;
         for (i = 0; i < versions.length; ++i) {
             if (step == versions[i]) {
@@ -106,7 +95,21 @@ public class LiveDataQrViewModel extends ViewModel {
             }
         }
         if (i < versions.length - 1) {
-            step = versions[i+1];
+            return versions[i+1];
         }
+        return step;
+    }
+
+    private int findLowerVersionSize() {
+        int i;
+        for (i = 0; i < versions.length; ++i) {
+            if (step == versions[i]) {
+                break;
+            }
+        }
+        if (i > 0) {
+            return  versions[i-1];
+        }
+        return step;
     }
 }
