@@ -86,11 +86,7 @@ public class EncodeActivity extends AppCompatActivity implements ZBarScannerView
             public void run() {
                 if (new Date().getTime() - timestamp > PERIOD) {
                     liveDataQrViewModel.downScale();
-                } else {
-                    nrOfACK++;
-                    if(nrOfACK >= nrOfACKToUpgrade) {
-                        liveDataQrViewModel.upScale();
-                    }
+                    nrOfACK = 0;
                 }
 
 
@@ -126,7 +122,16 @@ public class EncodeActivity extends AppCompatActivity implements ZBarScannerView
         byte[] stepInBytes = ByteBuffer.allocate(4).putInt(liveDataQrViewModel.getCurrent()).array();
         byte[] ackStep = rawResult.getContents().getBytes(StandardCharsets.ISO_8859_1);
         if(Arrays.equals(ackStep,stepInBytes)) {
-            timestamp = new Date().getTime();
+            long auxTimestamp = new Date().getTime();
+
+            if (auxTimestamp - timestamp <= PERIOD) {
+                nrOfACK++;
+                if (nrOfACK >= nrOfACKToUpgrade) {
+                    liveDataQrViewModel.upScale();
+                }
+            }
+
+            timestamp = auxTimestamp;
             liveDataQrViewModel.next();
         }
         mScannerView.resumeCameraPreview(this);

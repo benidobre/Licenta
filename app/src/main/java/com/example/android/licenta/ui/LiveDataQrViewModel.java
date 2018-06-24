@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 
 import com.example.android.licenta.bl.BusinessLogic;
@@ -65,6 +66,7 @@ public class LiveDataQrViewModel extends ViewModel {
     }
 
     public void next() {
+        Log.d("FIND ME IF YOU CAN","Enter NEXT " + progress);
         current++;
         if(progress > rez.length) {
             qrCode.postValue(BusinessLogic.getQR("end"));
@@ -72,19 +74,24 @@ public class LiveDataQrViewModel extends ViewModel {
             qrCode.postValue(BusinessLogic.getBytesQR(getPackage()));
         }
         progress += step;
+        Log.d("FIND ME IF YOU CAN","Exit NEXT " + progress);
     }
 
     public void downScale() {
+        Log.d("FIND ME IF YOU CAN","Enter DOWNSCALE " + progress);
         progress -= step;
 
         step = findLowerVersionSize();
 
         qrCode.postValue(BusinessLogic.getBytesQR(getPackage()));
         progress += step;
+        Log.d("FIND ME IF YOU CAN","Exit DOWNSCALE " + progress);
     }
 
     public void upScale() {
+        Log.d("FIND ME IF YOU CAN","Enter UPSCALE " + progress);
         step = findUpperVersionSize();
+        Log.d("FIND ME IF YOU CAN","Exit UPSCALE " + progress);
     }
 
     private int findUpperVersionSize() {

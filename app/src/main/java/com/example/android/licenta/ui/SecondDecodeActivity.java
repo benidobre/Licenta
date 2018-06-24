@@ -128,16 +128,54 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
                 byte[] currentStep = Arrays.copyOfRange(received, dataLength , dataLength + STEP_ENCODING_LENGTH);
                 if(Arrays.equals(currentStep,stepInBytes)) {
                     current++;
-                    if(progress < 0) {
-                        int i = 0;
-                    }
+
+
                     System.arraycopy(received, 0, destination, progress, dataLength);
+
+                    //testing
+                    byte[] destcut = Arrays.copyOfRange(destination, progress,progress+ dataLength);
+                    byte[] inputcut = Arrays.copyOfRange(input, progress, progress+dataLength);
+                    byte[] receivecut = Arrays.copyOfRange(received, 0, dataLength);
+                    if(!Arrays.equals(destcut,inputcut)) {
+                        int ben = 0;
+                        for(int i=0; i < dataLength; ++i) {
+                            if(destcut[i] != inputcut[i])
+                                ben++;
+                        }
+                    }
+                    if(!Arrays.equals(destcut,receivecut)) {
+                        int ben = 0;
+                        for(int i=0; i < dataLength; ++i) {
+                            if(destcut[i] != receivecut[i])
+                                ben++;
+                        }
+                    }
                     progress += dataLength;
                     qrImageView.setImageBitmap(BusinessLogic.getBytesQR(currentStep));
+
+
                 }
                 else if(Arrays.equals(currentStep,previousStepInBytes)){
                     progress -= (last.length - STEP_ENCODING_LENGTH);
                     System.arraycopy(received, 0, destination, progress, dataLength);
+                    //testing
+                    byte[] destcut = Arrays.copyOfRange(destination, progress,progress+ dataLength);
+                    byte[] inputcut = Arrays.copyOfRange(input, progress, progress+dataLength);
+                    byte[] receivecut = Arrays.copyOfRange(received, 0, dataLength);
+                    if(!Arrays.equals(destcut,inputcut)) {
+                        int ben = 0;
+                        for(int i=0; i < dataLength; ++i) {
+                            if(destcut[i] != inputcut[i])
+                                ben++;
+                        }
+                    }
+                    if(!Arrays.equals(destcut,receivecut)) {
+                        int ben = 0;
+                        for(int i=0; i < dataLength; ++i) {
+                            if(destcut[i] != receivecut[i])
+                                ben++;
+                        }
+                    }
                     progress += dataLength;
 //                    progress -= (last.length - received.length);
 
