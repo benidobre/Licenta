@@ -78,6 +78,9 @@ public class LiveDataQrViewModel extends ViewModel {
     }
 
     public void downScale() {
+        if(progress > rez.length) {
+            return;
+        }
         Log.d("FIND ME IF YOU CAN","Enter DOWNSCALE " + progress);
         progress -= step;
 

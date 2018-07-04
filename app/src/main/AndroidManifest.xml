@@ -28,8 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.DecodeActivity">
-        </activity>
         <activity android:name=".ui.SecondDecodeActivity"
                   android:configChanges="orientation"
                   android:screenOrientation="portrait">

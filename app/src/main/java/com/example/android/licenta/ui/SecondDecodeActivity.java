@@ -36,10 +36,10 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
     private File photo ;
     private FileOutputStream fos;
     private Vibrator v;
-    public  byte[] input;
     private int current = 0;
     private int progress = 0;
     private byte[] destination;
+    byte[] last;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,15 +73,10 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
         LinearLayout linearLayout = findViewById(R.id.activity_main);
         linearLayout.addView(mScannerView);
 
-
-        File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "fb.jpg");
-        input = BusinessLogic.fullyReadFileToBytes(imgFile);
-        destination = new byte[input.length+500];
+        destination = new byte[1500+500];
 
 
     }
-
-
 
     @Override
     protected void onPause() {
@@ -97,9 +92,6 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
         mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
         mScannerView.startCamera();          // Start camera on resume
     }
-
-    byte[] last;
-//    int previousACK;
 
     @Override
     public void handleResult(me.dm7.barcodescanner.zbar.Result result) {
@@ -132,24 +124,7 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
 
                     System.arraycopy(received, 0, destination, progress, dataLength);
 
-                    //testing
-                    byte[] destcut = Arrays.copyOfRange(destination, progress,progress+ dataLength);
-                    byte[] inputcut = Arrays.copyOfRange(input, progress, progress+dataLength);
-                    byte[] receivecut = Arrays.copyOfRange(received, 0, dataLength);
-                    if(!Arrays.equals(destcut,inputcut)) {
-                        int ben = 0;
-                        for(int i=0; i < dataLength; ++i) {
-                            if(destcut[i] != inputcut[i])
-                                ben++;
-                        }
-                    }
-                    if(!Arrays.equals(destcut,receivecut)) {
-                        int ben = 0;
-                        for(int i=0; i < dataLength; ++i) {
-                            if(destcut[i] != receivecut[i])
-                                ben++;
-                        }
-                    }
+
                     progress += dataLength;
                     qrImageView.setImageBitmap(BusinessLogic.getBytesQR(currentStep));
 
@@ -158,24 +133,7 @@ public class SecondDecodeActivity extends AppCompatActivity implements ZBarScann
                 else if(Arrays.equals(currentStep,previousStepInBytes)){
                     progress -= (last.length - STEP_ENCODING_LENGTH);
                     System.arraycopy(received, 0, destination, progress, dataLength);
-                    //testing
-                    byte[] destcut = Arrays.copyOfRange(destination, progress,progress+ dataLength);
-                    byte[] inputcut = Arrays.copyOfRange(input, progress, progress+dataLength);
-                    byte[] receivecut = Arrays.copyOfRange(received, 0, dataLength);
-                    if(!Arrays.equals(destcut,inputcut)) {
-                        int ben = 0;
-                        for(int i=0; i < dataLength; ++i) {
-                            if(destcut[i] != inputcut[i])
-                                ben++;
-                        }
-                    }
-                    if(!Arrays.equals(destcut,receivecut)) {
-                        int ben = 0;
-                        for(int i=0; i < dataLength; ++i) {
-                            if(destcut[i] != receivecut[i])
-                                ben++;
-                        }
-                    }
+
                     progress += dataLength;
 //                    progress -= (last.length - received.length);
 

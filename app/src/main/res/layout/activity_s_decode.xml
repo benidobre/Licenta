@@ -13,4 +13,5 @@
             android:scaleType="fitStart"
             android:layout_gravity="center_horizontal"
             android:id="@+id/qr_image_view"/>
+
 </LinearLayout>

@@ -47,8 +47,6 @@ public class EncodeActivity extends AppCompatActivity implements ZBarScannerView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        File imgFile = new  File("/sdcard/Images/test_image.jpg");
-
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
